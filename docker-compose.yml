@@ -1,0 +1,21 @@
+version: '2.4'
+
+services:
+  octoprint:
+    image: octoprint/octoprint
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - /dev/ttyACM0:/dev/ttyACM0
+      - /dev/video0:/dev/video0
+    volumes:
+     - octoprint:/octoprint
+
+    environment:
+      - ENABLE_MJPG_STREAMER=true
+
+    volumes:
+      - octoprint:/octoprint
+
+volumes:
+  octoprint:
